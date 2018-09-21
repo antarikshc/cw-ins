@@ -1,5 +1,6 @@
 package p5rsa;
 
+import java.math.BigInteger;
 import java.util.Scanner;
 
 /**
@@ -16,7 +17,7 @@ public class P5RSA {
         System.out.print("Enter the number to Encrypt and Decrypt: ");
         int msg = sc.nextInt();
         
-        double c, msgBack;
+        BigInteger c, msgBack;
         System.out.print("Enter Prime number P: ");
         p = sc.nextInt();
         
