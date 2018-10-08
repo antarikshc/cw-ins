@@ -9,60 +9,34 @@ import java.util.Scanner;
 public class P2Vernam {
 
     public static void main(String[] args) {
-        
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter Plaintext: ");
-        String plainText = sc.nextLine();
-        System.out.print("Enter Cipher Key: ");
-        String cipherKey = sc.nextLine();
-        
-        String cipherText = encryptText(plainText, cipherKey);
-        System.out.println("Cipher Text is: " + cipherText);
-        
-        String decryptedText = decryptText(cipherText, cipherKey);
-        System.out.println("Plain Text is: " + decryptedText);
-        
-       
-    }
-    
-    private static String encryptText(String plainText, String cipherKey) {
-        
-        char[] textChar = plainText.toCharArray();
-        char[] keyChar = cipherKey.toCharArray();
-        
-        char[] cipher = new char[textChar.length];
-        String returnString = "";
-        for (int i = 0; i < textChar.length; i++) {
-            
-            cipher[i] = (char) (textChar[i] ^ keyChar[i]);
-            int temp = (int) cipher[i];
-            System.out.println(temp+50);
-            System.out.println(Character.toString((char) (temp+26)));
-            returnString += cipher[i];
-            
-        }
-        
-        return returnString;
-        
-        
-    }
 
-    private static String decryptText(String cipherText, String cipherKey) {
+        String input, key;
+        String encryptedText = "", decryptedText = "";
+        char t, k;
+        int x;
+        Scanner sc = new Scanner(System.in);
         
-        char[] textChar = cipherText.toCharArray();
-        char[] keyChar = cipherKey.toCharArray();
+        System.out.print("Enter text to encrypt: ");
+        input = sc.nextLine();
         
-        char[] cipher = new char[textChar.length];
-        String returnString = "";
-        for (int i = 0; i < textChar.length; i++) {
-            
-            cipher[i] = (char) (textChar[i] ^ keyChar[i]);
-            returnString += cipher[i];
-            
+        System.out.print("Enter one time password:  ");
+        key = sc.nextLine();
+        
+        for (int i = 0; i < input.length(); i++) {
+            t = input.charAt(i);
+            k = key.charAt(i);
+            x = t ^ k;
+            encryptedText += (char) (x + 64);
         }
-        
-        return returnString;
-        
+        System.out.println("Encryption text is: " + encryptedText);
+
+        for (int i = 0; i < encryptedText.length(); i++) {
+            t = encryptedText.charAt(i);
+            k = key.charAt(i);
+            x = t ^ k;
+            decryptedText += (char) (x + 64);
+        }
+        System.out.println("Decrypted text is: " + decryptedText);
+
     }
-    
 }
